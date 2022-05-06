@@ -1,0 +1,87 @@
+﻿@model IEnumerable<aspprojet.Models.proprietaire>
+
+@{
+    ViewBag.Title = "propriétaires";
+    Layout = "~/Views/Shared/_dashAdmin.cshtml";
+}
+
+<div class="">
+    <div class="" style="margin-left:-5px;margin-top:30px">
+        <div class="">
+            <div class="col-lg-68 grid-margin stretch-cardd shadow">
+                <div class="cardd">
+                    <div class="cardd-body">
+                        <h4 class="cardd-title">Propriétaires</h4>
+
+                        <div class="">
+                            <table class="table">
+
+                                <thead>
+                                    <tr>
+                                        <th>Nom </th>
+                                        <th>Prénom </th>
+                                        <th>Email </th>
+                                        <th>Téléphone</th>
+                                        <th>Adresse</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.nom)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.prenom)
+                                        </td>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.email)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.telephone)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.adresse)
+                                        </td>
+                                        <td>
+                                            <a href="~/Admin/addFavorisAdmprop/@item.Id">
+
+                                                <img src="~/Image/like.png" width="25px" height="25px" />
+
+                                            </a>
+                                            <a href="~/Admin/addlistenoireprop/@item.Id">
+
+                                                <img src="~/Image/delete-user.png" width="30px" height="30px" />
+
+                                            </a>
+                                            <a href="~/Admin/supppropr/@item.Id">
+
+                                                <img src="~/Image/bin-with-lid.png" width="23px" height="23px" />
+
+                                            </a>
+
+                                            <a href="~/Admin/editpropr/@item.Id">
+
+                                                <img src="~/Image/pencil (2).png" width="23px" height="23px" />
+
+                                            </a>
+                                            <a href="~/Admin/detailspropr/@item.Id">
+
+                                                <img src="~/Image/info.png" width="30px" height="30px" />
+
+                                            </a>
+                                    </tr>
+                                }
+
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+

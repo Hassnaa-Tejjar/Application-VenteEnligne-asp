@@ -1,0 +1,279 @@
+﻿@model aspprojet.Models.article
+
+@{
+    ViewBag.Title = "detailsArt";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Inscription</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="~/themelog/css/style.css">
+
+    </head>
+    <body>
+        <head>
+            <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+            <meta charset="utf-8">
+            <link rel="stylesheet" type="text/css" href="main.css">
+            <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet">
+        </head>
+        <body>
+            <div class="main">
+                
+                <div class="container a-container" id="a-container" style="margin-left:-10px">
+                    <form class="form" id="a-form" method="" action="">
+                        @if (Model.fk_offre == null)
+                        {
+                            <div class="form-horizontal">
+
+                                <table>
+
+                                    <tr>
+                                        <td>
+                                            <div class="form-group">
+                                                <div style="color:black;font-size:16px">@Html.DisplayName("Nom d'article")</div>
+                                                <div class="form__input" >@Html.DisplayFor(model => model.nom_art)</div>
+
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group mar">
+                                                <div style="color:black;font-size:16px">@Html.DisplayName("Description")</div>
+                                                <div class="form__input">@Html.DisplayFor(model => model.description)</div>
+
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-group">
+                                                <div style="color:black;font-size:16px">@Html.DisplayName("Catégorie")</div>
+                                                <div class="form__input">@Html.DisplayFor(model => model.categorie)</div>
+
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group mar">
+                                                <div style="color:black;font-size:16px">@Html.DisplayName("Prix en DH")</div>
+                                                <div class="form__input">@Html.DisplayFor(model => model.prix)</div>
+
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-group">
+                                                <div style="color:black;font-size:16px">@Html.DisplayName("Marque")</div>
+                                                <div class="form__input">@Html.DisplayFor(model => model.marque)</div>
+
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group mar">
+                                                <div style="color:black;font-size:16px">@Html.DisplayName("Nom du propriétaire")</div>
+                                                <div class="form__input">@Html.DisplayFor(model => model.proprietaire.nom) @Html.DisplayFor(model => model.proprietaire.prenom)</div>
+
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-group">
+                                                <div style="color:black;font-size:16px">@Html.DisplayName("Téléphone du propriétaire")</div>
+                                                <div class="form__input">@Html.DisplayFor(model => model.proprietaire.telephone)</div>
+
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group mar">
+                                                <div style="color:black;font-size:16px">@Html.DisplayName("Adresse du propriétaire")</div>
+                                                <div class="form__input">@Html.DisplayFor(model => model.proprietaire.adresse) </div>
+
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-group">
+                                                <div style="color:black;font-size:16px">@Html.DisplayName("Société")</div>
+                                                <div class="form__input">@Html.DisplayFor(model => model.proprietaire.societe)</div>
+
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group mar">
+                                                <div style="color:black;font-size:16px">@Html.DisplayName("Emploi")</div>
+                                                <div class="form__input">@Html.DisplayFor(model => model.proprietaire.fonction) </div>
+
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+
+                                <div style="margin-left :-420px;margin-top:-350px">
+                                    <img src="@Url.Content(Model.img_art)" width="400" height="380" style="border: 2px solid #D19C97" />
+                                </div>
+                            </div>}
+                        else
+                        {
+                            <div class="form-horizontal">
+
+                                <table>
+
+                                    <tr>
+                                        <td>
+                                            <div class="form-group">
+                                                <div style="color:black;font-size:16px">@Html.DisplayName("Nom d'article")</div>
+                                                <div class="form__input">@Html.DisplayFor(model => model.nom_art)</div>
+
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group mar">
+                                                <div style="color:black;font-size:16px">@Html.DisplayName("Description")</div>
+                                                <div class="form__input">@Html.DisplayFor(model => model.description)</div>
+
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-group">
+                                                <div style="color:black;font-size:16px">@Html.DisplayName("Catégorie")</div>
+                                                <div class="form__input">@Html.DisplayFor(model => model.categorie)</div>
+
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group mar">
+                                                <div style="color:black;font-size:16px">@Html.DisplayName("Prix en DH")</div>
+                                                <div class="form__input">@Html.DisplayFor(model => model.prix)</div>
+
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-group">
+                                                <div style="color:black;font-size:16px">@Html.DisplayName("Marque")</div>
+                                                <div class="form__input">@Html.DisplayFor(model => model.marque)</div>
+
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group mar">
+                                                <div style="color:black;font-size:16px">@Html.DisplayName("Nom du propriétaire")</div>
+                                                <div class="form__input">@Html.DisplayFor(model => model.proprietaire.nom) @Html.DisplayFor(model => model.proprietaire.prenom)</div>
+
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-group">
+                                                <div style="color:black;font-size:16px">@Html.DisplayName("Téléphone de propriétaire")</div>
+                                                <div class="form__input">@Html.DisplayFor(model => model.proprietaire.telephone)</div>
+
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group mar">
+                                                <div style="color:black;font-size:16px">@Html.DisplayName("Adresse du propriétaire")</div>
+                                                <div class="form__input">@Html.DisplayFor(model => model.proprietaire.adresse) </div>
+
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-group">
+                                                <div style="color:black;font-size:16px">@Html.DisplayName("Société")</div>
+                                                <div class="form__input">@Html.DisplayFor(model => model.proprietaire.societe)</div>
+
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group mar">
+                                                <div style="color:black;font-size:16px">@Html.DisplayName("Emploi")</div>
+                                                <div class="form__input">@Html.DisplayFor(model => model.proprietaire.fonction) </div>
+
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-group ">
+                                                <div style="color:black;font-size:16px">@Html.DisplayName("Offre")</div>
+                                                <div class="form__input">@Html.DisplayFor(model => model.offre.description) </div>
+
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group mar">
+                                                <div style="color:black;font-size:16px">@Html.DisplayName("Date de l'offre")</div>
+                                                <div class="form__input">De @Html.DisplayFor(model => model.offre.date_i) Jusqu'à @Html.DisplayFor(model => model.offre.date_f)</div>
+
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                </table>
+
+                                <div style="margin-left :-420px;margin-top:-380px">
+                                    <img src="@Url.Content(Model.img_art)" width="400" height="380" style="border: 2px solid #D19C97" />
+                                </div>
+                            </div>
+                        }
+                    </form>
+                </div>
+            </div>
+        </body>
+    </body>
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,129 @@
+﻿
+@using aspprojet.Models
+@{
+    ViewBag.Title = "panierClt";
+    Layout = "~/Views/Shared/_Panier.cshtml";
+}
+
+<div class="container-fluid pt-5">
+    <div class="row px-xl-5">
+        <div class=" table-responsive mb-5">
+            <table class="table table-bordered text-center mb-0" id="shoptable">
+                <thead class="bg-secondary text-dark">
+                    <tr>
+                        <th>Articles</th>
+                        <th>Prix</th>
+                        <th>Quantité</th>
+                        <th>Total</th>
+                        <th>Propriétaire</th>
+                        <th>Retirer</th>
+                    </tr>
+                </thead>
+                @if (Session["cart"] != null)
+                {
+                    foreach (Panier item in (List<Panier>)Session["cart"])
+
+                    {
+
+
+                        <tbody class="align-middle">
+                            @if (Convert.ToInt32(Session["clientId"]) == item.clt.Id)
+                            {
+                                
+                                <tr>
+
+                                    <td> <img src="@Url.Content(item.art.img_art)" width="60" height="80" /> <div style="margin-left:-20px">@item.art.nom_art</div></td>
+                                    <td class="align-middle prix" id="prix">@item.art.prix </td>
+                                    <td class="align-middle">
+                                        <div class="input-group   mx-auto" style="width: 100px;">
+                                            <div class="input-group-btn">
+                                                <button class="btn btn-sm btn-primary btn-minus"  id="minus">
+                                                    <i class="fa fa-minus"></i>
+                                                </button>
+                                            </div>
+                                            <input type="text" class="form-control form-control-sm bg-secondary text-center" value="1" id="qt">
+                                            <div class="input-group-btn">
+                                                <button class="btn btn-sm btn-primary btn-plus "  id="plus">
+                                                    <i class="fa fa-plus"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="align-middle total" id="total">@item.art.prix</td>
+                                    <td class="align-middle "><div><button class=" btn-block btn-primary my-2 py-2"><img src="~/Theme/img/phone-call.png" style="height:25px;font-weight:25px;margin-right:15px" />@item.art.proprietaire.telephone</button><button class=" btn-block btn-primary my-3 py-2"><img src="~/Theme/img/chat.png" style="height:25px;font-weight:25px;margin-right:15px" /><a href="~/client/send">@item.art.proprietaire.email</a></button></div></td>
+                                    <td class="align-middle"><button class="btn btn-sm btn-primary"> <a href="~/Client/DeleteArt/@item.art.Id" /><i class="fa fa-times"></i></button></td>
+                                </tr>
+
+
+                                }
+                        </tbody>
+
+
+                    }
+                }
+            </table>
+        </div>
+      
+    </div>
+</div>
+<script>
+    function total(prix, qt) {
+
+        return prix * qt;
+    }
+ 
+
+ 
+    //Increment
+    var incrementButton = document.getElementsByClassName('btn-plus');
+    var decrementButton = document.getElementsByClassName('btn-minus');
+   
+   
+ 
+    for (var i = 0; i < incrementButton.length; i++) {
+       
+        var button = incrementButton[i];
+       
+       
+        button.addEventListener('click', function (event) {
+            var buttonClicked = event.target;
+            var input = buttonClicked.parentElement.parentElement.parentElement.children[1];
+            var p = buttonClicked.parentElement.parentElement.parentElement.parentElement.parentElement.children[1];
+            var t = buttonClicked.parentElement.parentElement.parentElement.parentElement.parentElement.children[3];
+            
+            var inputValue = input.value;
+            var pValue = p.innerHTML;
+            var tValue = t.innerHTML;
+            var newValue = parseInt(inputValue) + 1;
+            var newtValue = total(parseFloat(pValue), newValue);
+            input.value = newValue;
+            t.innerHTML = newtValue;
+  
+        })
+    }
+    //Decrement
+    for (var i = 0; i < decrementButton.length; i++) {
+        var button = decrementButton[i];
+        button.addEventListener('click', function (event) {
+            var buttonClicked = event.target;
+            var input = buttonClicked.parentElement.parentElement.parentElement.children[1];
+            var p = buttonClicked.parentElement.parentElement.parentElement.parentElement.parentElement.children[1];
+            var t = buttonClicked.parentElement.parentElement.parentElement.parentElement.parentElement.children[3];
+            var inputValue = input.value;
+            var pValue = p.innerHTML;
+            var tValue = t.innerHTML;
+            var newValue = parseInt(inputValue) - 1;
+            if (newValue >= 1) {
+                var newtValue = total(parseFloat(pValue), newValue);
+                input.value = newValue;
+                t.innerHTML = newtValue;
+            } else {
+                input.value = 1;
+            }
+
+        })
+    }
+ 
+</script>
+
+

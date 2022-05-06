@@ -1,0 +1,77 @@
+﻿@model aspprojet.Models.proprietaire
+
+@{
+    ViewBag.Title = "authProp";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Inscription</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="~/themelog/css/style.css">
+
+    </head>
+    <body>
+        <!-- partial:index.partial.html -->
+
+        <head>
+            <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+            <meta charset="utf-8">
+            <link rel="stylesheet" type="text/css" href="main.css">
+            <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet">
+        </head>
+        <body>
+            <div class="main">
+                <div class="container a-container" id="a-container" style="margin-left:-10px">
+                    <form class="form" id="a-form"  method="post" action="authProp">
+
+                        <div class="form-horizontal">
+
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <h2 class="form_title title" style="margin-top:00px;margin-left:47px">S'authentifier à ClickToBuy</h2>
+                            <div class="form-group " style="margin-left:150px">
+                                @Html.TextBoxFor(model => model.email, htmlAttributes: new { @class = "form__input", @type = "text", @placeholder = "Email" })
+                                <div class="col-md-10">
+                                    @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-left:150px">
+                                @Html.TextBoxFor(model => model.password, htmlAttributes: new { @class = "form__input", @type = "password", @placeholder = "Password" })
+                                <div class="col-md-10">
+
+                                    @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <script src="~/themelog/js/javascript.js"></script>
+                            <div>
+                                <div class="form-group" style="margin-left:110px">
+                                    <div class="col-md-offset-2 col-md-10" style="margin-left:40px">
+                                        <input type="submit" value="S'authentifier" class="form__button button submit" /><br />
+                                        @ViewBag.error
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+                <div style="margin-left:100px">
+                    <div class="switch" id="switch-cnt">
+                        <div class="switch__circle"></div>
+                        <div class="switch__circle switch__circle--t"></div>
+                        <div class="switch__container" id="switch-c1">
+                            <h2 class="switch__title title">Bienvenue!</h2>
+                            <p class="switch__description description">Entrez vos détails personnels et découvrez-nous.</p>
+                            <button class="switch__button button switch-btn">@Html.ActionLink(" S'inscrire", "inscProp")</button>
+
+                        </div>
+                    </div>
+                </div>
+        </body>
+    </body>
+}

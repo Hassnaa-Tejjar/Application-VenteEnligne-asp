@@ -1,0 +1,181 @@
+﻿@model aspprojet.Models.article
+
+@{
+    ViewBag.Title = "AddArticle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@using (Html.BeginForm("AddArticle", "Prop", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <head>
+        <meta charset="UTF-8">
+        <title>Ajout d'article</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="~/themelog/css/style.css">
+
+    </head>
+    <body>
+        <!-- partial:index.partial.html -->
+
+        <head>
+            <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+            <meta charset="utf-8">
+            <link rel="stylesheet" type="text/css" href="main.css">
+            <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet">
+        </head>
+
+        <body>
+            <div class="main">
+                <div class="container a-container" id="a-container" style="margin-left:-10px">
+                    <form class="form" id="a-form" method="" action="">
+                        <div class="form-horizontal">
+
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <table>
+                                <tr>
+                                    <h2 class="form_title title" style="margin-top:00px;margin-left:47px">Ajouter un article</h2>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-group">
+                                            @Html.TextBoxFor(model => model.nom_art, htmlAttributes: new { @class = "form__input", @type = "text", @placeholder = "Nom d'article" })
+                                            <div class="col-md-10">
+                                                @Html.ValidationMessageFor(model => model.nom_art, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-group mar">
+                                            @Html.TextBoxFor(model => model.description, htmlAttributes: new { @class = "form__input", @type = "text", @placeholder = "la description" })
+                                            <div class="col-md-10">
+                                                @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-group">
+                                            <div class="form__input " style="padding:10px">Votre Identifiant: @Session["propId"] </div>
+                                 
+                                        </div>
+
+                                    </td>
+                                    <td>
+                                        <div class="form-group mar">
+                                            @Html.TextBoxFor(model => model.prix, htmlAttributes: new { @class = "form__input", @type = "text", @placeholder = "prix" })
+                                            <div class="col-md-10">
+                                                @Html.ValidationMessageFor(model => model.prix, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        
+                                        <div class="form-group " style="margin-left:-10px">
+                                            @Html.LabelFor(model => model.img_art, new { @class = "control-label col-md-2" })
+                                            <div class="col-md-10 form-group mar form__input">
+                                                <input type="file" name="ImageFile" required style="width:500px;margin-top:10px;height:100px" />
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-group mar">
+                                            @Html.TextBoxFor(model => model.marque, htmlAttributes: new { @class = "form__input", @placeholder = "La marque" })
+                                            <div class="col-md-10">
+
+                                                @Html.ValidationMessageFor(model => model.marque, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-group " style="margin-left:-2px">
+                                            @* @Html.DropDownList("x",ViewBag.o as SelectList,"Offre",htmlAttributes: new { @class = "form__input", @type = "text", @placeholder = "Offre" })*@
+                                            @Html.DropDownListFor(model=>model.fk_offre,ViewBag.offrelist as SelectList,"Choissir offre", new { @class = "form__input" })
+                                        </div>
+                                    </td>
+                                    <td>
+
+                                        <div class="form-group" style="margin-left:10px">
+                                            @Html.DropDownListFor(model => model.categorie,
+     new List<SelectListItem>
+      {
+                                            new SelectListItem{Text="Vêtement_femmes",Value="Vêtement_femmes" },
+                                            new SelectListItem{Text="Vêtement_Hommes",Value="Vêtement_Hommes" },
+                                            new SelectListItem{Text="Vêtement_enfants",Value="Vêtement_enfants" },
+                                            new SelectListItem{Text="Maquillage",Value="Maquillage"},
+                                            new SelectListItem{Text="Soins",Value="Soins" },
+                                            new SelectListItem{Text="Decoration",Value="Decoration" },
+                                            new SelectListItem{Text="Rangement",Value="Rangement" },
+                                            new SelectListItem{Text="Organisation",Value="Organisation" },
+                                            new SelectListItem{Text="Pour_maison",Value="Pour_maison" },
+                                            new SelectListItem{Text="Inforamatique",Value="Informatique" },
+                                            new SelectListItem{Text="Montres",Value="Montres" },
+                                            new SelectListItem{Text="Automobile",Value="Automobile" },
+                                            new SelectListItem{Text="Motor",Value="Motor" },
+                                            new SelectListItem{Text="bicyclette",Value="bicyclette" }
+
+         }, "Choisir categorie", htmlAttributes: new { @class = "form__input", @type = "text", @placeholder = "Catégorie" }
+    )
+                                            <div class="col-md-10">
+                                                @Html.ValidationMessageFor(model => model.categorie, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                               
+                            </table>
+
+                            <script src="~/themelog/js/javascript.js"></script>
+
+                            <div>
+                                <div class="form-group"  style="margin-left:100px" >
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <button class="form__button button submit">@Html.ActionLink("Ajouter une offre sur cette article", "AddOffre")</button>
+                                        <br />
+                                        @ViewBag.error
+                                    </div>
+                                </div>
+                                <div class="form-group" style="margin-left:220px">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <input type="submit" value="Ajouter" class="form__button button submit" />
+                                        <br />
+                                        @ViewBag.error
+                                    </div>
+                                </div>
+                                <div class="form-group" style="margin-left:-5px;margin-top:-105px">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <button class="form__button button submit">@Html.ActionLink("Retour à la liste", "articleProp")</button>
+                                        <br />
+                                        @ViewBag.error
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+                <div style="margin-left:-25px;margin-top:-24px">
+                   
+
+
+                        <img src="~/Image/Capture.PNG" style="width: 440px; height: 600px" />
+
+                
+
+                   
+                    </div>
+                </div>
+
+        </body>
+
+    </body>
+}

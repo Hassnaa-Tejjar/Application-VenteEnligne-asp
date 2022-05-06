@@ -1,0 +1,96 @@
+﻿@model aspprojet.Models.proprietaire
+
+@{
+    ViewBag.Title = "profileProp";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Inscription</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="~/themelog/css/style.css">
+
+    </head>
+    <body>
+        <head>
+            <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+            <meta charset="utf-8">
+            <link rel="stylesheet" type="text/css" href="main.css">
+            <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet">
+        </head>
+        <body>
+            <div class="main">
+
+                <div class="container a-container" id="a-container" style="margin-left:-10px">
+                    <form class="form" id="a-form" method="" action="">
+                        <div style="margin-top: -440px; margin-left: -205px">
+                            <img src="~/Image/profile.png" width="98px" height="98px" style="">
+                        </div>
+                        <div class="form-horizontal" style="margin-top:120px">
+                            <div style="margin-left:-130px">
+                                <div class="form-group" style="margin-left:30px">
+                                    <div style="color:black;font-size:16px">@Html.DisplayName("Votre Id est :")</div>
+                                    @Html.TextBoxFor(model => model.Id, htmlAttributes: new { @class = "form__input", @type = "text", @placeholder = "Nom" })
+
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-left:30px">
+                                <div style="color:black;font-size:16px">@Html.DisplayName("Votre nom est :")</div>
+                                @Html.TextBoxFor(model => model.nom, htmlAttributes: new { @class = "form__input", @type = "text", @placeholder = "Nom" })
+
+                            </div>
+                            <div class="form-group" style="margin-left:30px">
+                                <div style="color:black;font-size:16px">@Html.DisplayName("Votre prenom est:")</div>
+                                @Html.TextBoxFor(model => model.prenom, htmlAttributes: new { @class = "form__input", @type = "text", @placeholder = "Nom" })
+
+                            </div>
+
+                            <div class="form-group" style="margin-left:30px">
+                                <div style="color:black;font-size:16px">@Html.DisplayName("Votre age est:")</div>
+                                @Html.TextBoxFor(model => model.age, htmlAttributes: new { @class = "form__input", @type = "text", @placeholder = "Nom" })
+
+                            </div>
+                            <div class="form-group" style="margin-left:30px">
+                                <div style="color:black;font-size:16px">@Html.DisplayName("Votre sexe est:")</div>
+                                @Html.TextBoxFor(model => model.sexe, htmlAttributes: new { @class = "form__input", @type = "text", @placeholder = "Nom" })
+
+                            </div>
+                            <div style="margin-left:-260px;margin-top:-266px">
+                                <div class="form-group" style="margin-left:30px">
+                                    <div style="color:black;font-size:16px">@Html.DisplayName("Votre telephone est:")</div>
+                                    @Html.TextBoxFor(model => model.telephone, htmlAttributes: new { @class = "form__input", @type = "text", @placeholder = "Nom" })
+
+                                </div>
+                                <div class="form-group" style="margin-left:30px">
+                                    <div style="color:black;font-size:16px">@Html.DisplayName("Votre e-mail est:")</div>
+                                    @Html.TextBoxFor(model => model.email, htmlAttributes: new { @class = "form__input", @type = "text", @placeholder = "Nom" })
+
+                                </div>
+                                <div class="form-group" style="margin-left:30px">
+                                    <div style="color:black;font-size:16px">@Html.DisplayName("Votre CIN est:")</div>
+                                    @Html.TextBoxFor(model => model.cin, htmlAttributes: new { @class = "form__input", @type = "text", @placeholder = "Nom" })
+
+                                </div>
+                                <div class="form-group" style="margin-left:30px">
+                                    <div style="color:black;font-size:16px">@Html.DisplayName("Le nom du societe est:")</div>
+                                    @Html.TextBoxFor(model => model.telephone, htmlAttributes: new { @class = "form__input", @type = "text", @placeholder = "Nom" })
+
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-left:-110px;margin-top:20px">
+                                <div style="color:black;font-size:16px">@Html.DisplayName("Votre fonction est:")</div>
+                                @Html.TextBoxFor(model => model.fonction, htmlAttributes: new { @class = "form__input", @type = "text", @placeholder = "Nom" })
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </body>
+    </body>
+}

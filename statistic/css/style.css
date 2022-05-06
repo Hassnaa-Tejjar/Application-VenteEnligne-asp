@@ -1,0 +1,20 @@
+﻿.badge-danger {
+    color: #fff;
+    background-color: #FF4747;
+}
+.badge {
+    display: inline-block;
+    padding: 0.25em 0.4em;
+    font-size: 90%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 1rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.badge-success, .preview-list .preview-item .preview-thumbnail .badge.badge-online {
+    color: #fff;
+    background-color: #57B657;
+}

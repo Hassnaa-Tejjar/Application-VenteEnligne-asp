@@ -1,0 +1,82 @@
+﻿@using aspprojet.Models
+@{
+    ViewBag.Title = "favorisProp";
+    Layout = "~/Views/Shared/_dashProp.cshtml";
+}
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="~/themelog/css/Style1.css">
+</head>
+
+<div class="row">
+    @foreach (FavorisProp item in (List<FavorisProp>)Session["favoris"])
+    {
+        if (Convert.ToInt32(Session["propId"]) == item.prop.Id)
+        {
+            if (item.produit.fk_offre == null)
+            {
+                <div class="col-3  border-primary ">
+                    <div class="card mb-4" style="width: 200px;">
+                        <div class="row g-0">
+
+                            <div class="col-md-6">
+                                <img src="@Url.Content(item.produit.img_art)" width="200" height="210" />
+                            </div>
+
+                            <div class="col-md-12" style="height:40px">
+                                <div class="card-footer " style="height:40px">
+                                    <p class="card-text"><b>Prix: </b> @Html.DisplayFor(modelItem => item.produit.prix)</p>
+                                    <a style="margin-top:-44px;margin-right:-15px" class="float-right" asp-action="Details" asp-route-id="@item.produit.Id" href="~/Prop/detailsArt/@item.produit.Id">
+                                        <img src="~/Image/det.png" width="30px" height="30px" />
+                                    </a>
+
+                                    <a style="margin-top:-44px;margin-right:15px" class="float-right" asp-action="Details" asp-route-id="@item.produit.Id" href="~/Prop/Deletefav/@item.produit.Id">
+                                        <img src="~/Theme/img/close.png" width="27px" height="27px" />
+                                    </a>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="col-3  border-primary ">
+                    <div class="card mb-4" style="width: 200px;">
+                        <div class="row g-0">
+
+                            <div class="col-md-6">
+                                <img src="@Url.Content(item.produit.img_art)" width="200" height="190" />
+                            </div>
+
+                            <div class="col-md-12" style="height:60px">
+                                <div class="card-footer " style="height:60px">
+                                    <p class="card-text"><b>Prix: </b> @Html.DisplayFor(modelItem => item.produit.offre.prix_offre)</p>
+                                    <a style="margin-top:-44px;margin-right:-15px" class="float-right" asp-action="Details" asp-route-id="@item.produit.Id" href="~/Prop/detailsArt/@item.produit.Id">
+                                        <img src="~/Image/det.png" width="30px" height="30px" style="margin-left:-25px" />
+                                        <img src="~/Image/new-offer.png" width="70px" height="50px" style="margin-top:-385px;margin-left:-200px" />
+
+                                    </a>
+                                    <a style="margin-top:-44px;margin-right:15px" class="float-right" asp-action="Details" asp-route-id="@item.produit.Id" href="~/Prop/Deletefav/@item.produit.Id">
+                                        <img src="~/Theme/img/close.png" width="27px" height="27px" />
+                                    </a>
+
+                                    <p class="" style="margin-top:-20px;font-size:12px;text-decoration:line-through;color:red"> @Html.DisplayFor(modelItem => item.produit.prix)</p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+           
+        }
+    }
+
+
+</div>
+
+

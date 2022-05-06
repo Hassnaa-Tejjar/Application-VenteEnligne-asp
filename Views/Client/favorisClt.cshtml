@@ -1,0 +1,46 @@
+﻿@using aspprojet.Models
+@{
+    ViewBag.Title = "favorisClt";
+    Layout = "~/Views/Shared/_dashClient.cshtml";
+}
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="~/themelog/css/Style1.css">
+</head>
+
+<div class="row">
+    @if (Session["favoris"]!=null){ 
+   foreach (Favoris item in (List<Favoris>)Session["favoris"])
+    {
+        if (Convert.ToInt32(Session["clientId"]) == item.client.Id)
+        {
+            <div class="col-3  border-primary ">
+                <div class="card mb-4" style="width: 200px;">
+                    <div class="row g-0">
+
+                        <div class="col-md-6">
+                            <img src="@Url.Content(item.produit.img_art)" width="200" height="210" />
+                        </div>
+
+                        <div class="col-md-12" style="height:40px">
+                            <div class="card-footer " style="height:40px">
+                                <p class="card-text"><b style="margin-left:-20px">Prix: </b> @Html.DisplayFor(modelItem => item.produit.prix)</p>
+                                <a style="margin-top:-44px;margin-right:-20px" class="float-right" asp-action="Details" asp-route-id="@item.produit.Id" href="~/Prop/detailsArt/@item.produit.Id">
+                                    <img src="~/Image/det.png" width="30px" height="30px" />
+                                </a>
+                                <a style="margin-top:-44px;margin-right:15px" class="float-right" asp-action="Details" asp-route-id="@item.produit.Id" href="~/Client/Deletefav/@item.produit.Id">
+                                    <img src="~/Theme/img/close.png" width="27px" height="27px" />
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            }
+        }
+    }
+
+</div>
+

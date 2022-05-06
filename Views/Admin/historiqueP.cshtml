@@ -1,0 +1,68 @@
+﻿@using aspprojet.Models
+@{
+    ViewBag.Title = "historiqueP";
+    Layout = "~/Views/Shared/_dashAdmin.cshtml";
+}
+
+
+<div class="">
+    <div class="" style="margin-left:-5px;margin-top:30px">
+        <div class="">
+            <div class="col-lg-68 grid-margin stretch-cardd shadow">
+                <div class="cardd">
+                    <div class="cardd-body">
+                        <h4 class="cardd-title">Historique</h4>
+
+                        <div class="">
+                            <table class="table">
+
+                                <thead>
+                                    <tr>
+                                        <th>Nom </th>
+                                        <th>Prénom </th>
+                                        <th>Email </th>
+                                        <th>Action</th>
+                                        <th>Date</th>
+                                      
+                                       
+                                    </tr>
+                                </thead>
+                                @if (Session["historique"] != null)
+                                {
+                                    foreach (historique item in (List<historique>)Session["historique"])
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.proprietaire.nom)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.proprietaire.prenom)
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.proprietaire.email)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.action)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.date)
+                                            </td>
+                                          
+
+                                        </tr>
+                                    }
+                                }
+                              
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+

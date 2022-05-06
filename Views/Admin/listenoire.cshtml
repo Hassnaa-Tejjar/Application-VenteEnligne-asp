@@ -1,0 +1,121 @@
+﻿@using aspprojet.Models
+@{
+    ViewBag.Title = "listenoire";
+    Layout = "~/Views/Shared/_dashAdmin.cshtml";
+}
+
+<link href="~/statistic/css/style.css" rel="stylesheet" />
+<div class="">
+    <div class="" style="margin-left:-5px;margin-top:30px">
+        <div class="">
+            <div class="col-lg-68 grid-margin stretch-cardd shadow">
+                <div class="cardd">
+                    <div class="cardd-body">
+                        <h4 class="cardd-title">Liste noire</h4>
+
+                        <div class="">
+                            <table class="table">
+
+                                <thead>
+                                    <tr>
+                                        <th>Nom </th>
+                                        <th>Prénom </th>
+                                        <th>Email </th>
+                                        <th>Téléphone</th>
+                                        <th>Adresse</th>
+                                        <th>Rôle</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                @if (Session["listenoireclt"] != null)
+                                {
+                                    foreach (Listenoireclt item in (List<Listenoireclt>)Session["listenoireclt"])
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.client.nom)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.client.prenom)
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.client.email)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.client.telephone)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.client.adresse)
+                                            </td>
+                                            <td>
+                                                <label class="badge badge-success">Client</label>
+                                            </td>
+                                            <td>
+                                                <a href="~/Admin/Deletelistenoireclt/@item.client.Id">
+
+                                                    <img src="~/Theme/img/close.png" width="25px" height="25px" />
+
+                                                </a>
+                                                <a href="~/Admin/detailsclts/@item.client.Id">
+
+                                                    <img src="~/Image/info.png" width="30px" height="30px" />
+
+                                                </a>
+
+                                        </tr>
+                                    }
+                                }
+                                @if (Session["listenoireprop"] != null)
+                                {
+
+                                    foreach (Listenoireprop item in (List<Listenoireprop>)Session["listenoireprop"])
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.proprietaire.nom)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.proprietaire.prenom)
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.proprietaire.email)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.proprietaire.telephone)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.proprietaire.adresse)
+                                            </td>
+                                            <td>
+                                                <label class="badge badge-danger">Propriétaire</label>
+                                            </td>
+                                            <td>
+                                                <a href="~/Admin/Deletelistenoireprop/@item.proprietaire.Id">
+
+                                                    <img src="~/Theme/img/close.png" width="25px" height="25px" />
+
+                                                </a>
+                                                <a href="~/Admin/detailspropr/@item.proprietaire.Id">
+
+                                                    <img src="~/Image/info.png" width="30px" height="30px" />
+
+                                                </a>
+
+                                        </tr>
+                                    }
+                                }
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+

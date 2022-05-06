@@ -1,0 +1,104 @@
+﻿@model aspprojet.Models.msg
+@{
+    ViewBag.Title = "msg";
+    Layout = "~/Views/Shared/_dashAdmin.cshtml";
+}
+<link href="~/statistic/css/sb-admin-2.css" rel="stylesheet" />
+
+
+<div class="">
+    <div class="" style="margin-left:-30px;margin-top:30px">
+        <div class="roww">
+            <div class="col-lg-66 grid-margin stretch-cardd shadow">
+                <div class="cardd">
+                    <div class="cardd-body">
+                        <h4 class="cardd-title">Clients</h4>
+                        <p class="card-description">
+                            <code>Message</code>
+                        </p>
+                        <div class="table-responsive">
+                            <table class="table">
+
+                                <thead>
+                                    <tr>
+                                        <th style="">Email</th>
+
+                                        <th>Message</th>
+
+                                    </tr>
+                                </thead>
+                                @foreach (var item in Model.clients)
+                                {
+                                    <tr>
+                                        <td>
+                                            <a href="~/Admin/Deletemsg/@item.Id"><img src="~/Image/cancel.png" style="width: 13px; height: 13px;" /> </a> @Html.DisplayFor(modelItem => item.client.email) 
+                                        </td>
+
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.message_client)
+                                        </td>
+
+
+
+                                    </tr>
+                                }
+
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+                <div style="padding-left:20px;width:500px">
+                    <div class="col-lg-67 grid-margin stretch-cardd shadow">
+                        <div class="cardd ">
+                            <div class="cardd-body">
+                                <h4 class="cardd-title">Propriétaires</h4>
+                                <p class="card-description">
+                                    <code>Message</code>
+                                </p>
+                                <div class="table-responsive">
+                                    <table class="table" style="width: 430px">
+
+                                        <thead>
+                                            <tr>
+                                                <th style="">Email</th>
+
+                                                <th>Message</th>
+
+                                            </tr>
+                                        </thead>
+                                        @foreach (var item in Model.proprietaires)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    <a href="~/Admin/Deletemsgprop/@item.Id"><img src="~/Image/cancel.png" style="width: 13px; height: 13px;" /> </a> @Html.DisplayFor(modelItem => item.proprietaire.email)
+                                                </td>
+
+
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.message_prop)
+                                                </td>
+
+
+
+                                            </tr>
+                                        }
+
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+

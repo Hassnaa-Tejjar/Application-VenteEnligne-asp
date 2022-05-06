@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ecommerceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="admin">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nom" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="prenom" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="codesecret" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="article">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nom_art" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="categorie" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="prix" Type="Double" Nullable="false" />
+    <Property Name="img_art" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="marque" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="fk_prop" Type="Int32" />
+    <Property Name="fk_offre" Type="Int32" />
+    <NavigationProperty Name="offre" Relationship="Self.fk_offre" FromRole="article" ToRole="offre" />
+    <NavigationProperty Name="proprietaire" Relationship="Self.fk_prop" FromRole="article" ToRole="proprietaire" />
+  </EntityType>
+  <EntityType Name="client">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nom" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="prenom" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="age" Type="Int32" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="telephone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="sexe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="adresse" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="cin" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="message" Relationship="Self.fk_client" FromRole="client" ToRole="message" />
+  </EntityType>
+  <EntityType Name="message">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="message_client" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="fk_client" Type="Int32" />
+    <NavigationProperty Name="client" Relationship="Self.fk_client" FromRole="message" ToRole="client" />
+  </EntityType>
+  <EntityType Name="messageprop">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="message_prop" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="fk_propmsg" Type="Int32" />
+    <NavigationProperty Name="proprietaire" Relationship="Self.fk_propmsg" FromRole="messageprop" ToRole="proprietaire" />
+  </EntityType>
+  <EntityType Name="offre">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="date_i" Type="DateTime" Precision="0" />
+    <Property Name="date_f" Type="DateTime" Precision="0" />
+    <Property Name="prix_offre" Type="Double" />
+    <NavigationProperty Name="article" Relationship="Self.fk_offre" FromRole="offre" ToRole="article" />
+  </EntityType>
+  <EntityType Name="proprietaire">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nom" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="prenom" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="age" Type="Int32" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="telephone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="sexe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="adresse" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="cin" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="societe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="fonction" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="article" Relationship="Self.fk_prop" FromRole="proprietaire" ToRole="article" />
+    <NavigationProperty Name="messageprop" Relationship="Self.fk_propmsg" FromRole="proprietaire" ToRole="messageprop" />
+  </EntityType>
+  <Association Name="fk_offre">
+    <End Role="offre" Type="Self.offre" Multiplicity="0..1" />
+    <End Role="article" Type="Self.article" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="offre">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="article">
+        <PropertyRef Name="fk_offre" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_prop">
+    <End Role="proprietaire" Type="Self.proprietaire" Multiplicity="0..1" />
+    <End Role="article" Type="Self.article" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="proprietaire">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="article">
+        <PropertyRef Name="fk_prop" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_client">
+    <End Role="client" Type="Self.client" Multiplicity="0..1" />
+    <End Role="message" Type="Self.message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="client">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="message">
+        <PropertyRef Name="fk_client" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_propmsg">
+    <End Role="proprietaire" Type="Self.proprietaire" Multiplicity="0..1" />
+    <End Role="messageprop" Type="Self.messageprop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="proprietaire">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="messageprop">
+        <PropertyRef Name="fk_propmsg" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ecommerceEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="admin" EntityType="Self.admin" />
+    <EntitySet Name="article" EntityType="Self.article" />
+    <EntitySet Name="client" EntityType="Self.client" />
+    <EntitySet Name="message" EntityType="Self.message" />
+    <EntitySet Name="messageprop" EntityType="Self.messageprop" />
+    <EntitySet Name="offre" EntityType="Self.offre" />
+    <EntitySet Name="proprietaire" EntityType="Self.proprietaire" />
+    <AssociationSet Name="fk_offre" Association="Self.fk_offre">
+      <End Role="offre" EntitySet="offre" />
+      <End Role="article" EntitySet="article" />
+    </AssociationSet>
+    <AssociationSet Name="fk_prop" Association="Self.fk_prop">
+      <End Role="proprietaire" EntitySet="proprietaire" />
+      <End Role="article" EntitySet="article" />
+    </AssociationSet>
+    <AssociationSet Name="fk_client" Association="Self.fk_client">
+      <End Role="client" EntitySet="client" />
+      <End Role="message" EntitySet="message" />
+    </AssociationSet>
+    <AssociationSet Name="fk_propmsg" Association="Self.fk_propmsg">
+      <End Role="proprietaire" EntitySet="proprietaire" />
+      <End Role="messageprop" EntitySet="messageprop" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

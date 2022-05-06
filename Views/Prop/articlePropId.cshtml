@@ -1,0 +1,82 @@
+﻿@model IEnumerable<aspprojet.Models.article>
+
+@{
+    ViewBag.Title = "articlePropId";
+    Layout = "~/Views/Shared/_dashProp.cshtml";
+}
+<h1>@TempData["msg"]</h1>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="~/themelog/css/Style1.css">
+</head>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        if (item.fk_offre == null)
+        {
+            <div class="col-3  border-primary ">
+                <div class="card mb-4" style="width: 200px;">
+                    <div class="row g-0">
+
+                        <div class="col-md-6">
+                            <img src="@Url.Content(item.img_art)" width="200" height="210" />
+                        </div>
+
+                        <div class="col-md-12" style="height:40px">
+                            <div class="card-footer " style="height:40px">
+
+                                <p class="card-text" style="margin-left:-20px"><b>Prix: </b> @Html.DisplayFor(modelItem => item.prix)</p>
+                                <a style="margin-top:-44px;margin-right:-15px" class="float-right" asp-action="Details" href="~/Prop/detailsArt/@item.Id" asp-route-id="@item.Id">
+                                    <img src="~/Image/det.png" width="30px" height="30px" />
+                                </a>
+                                <a style="margin-top:-42px;margin-right:20px" class="float-right" asp-action="Details" asp-route-id="@item.Id" href="~/Prop/EditArt/@item.Id">
+                                    <img src="~/Image/pencil.png" width="23px" height="23px" />
+                                </a>
+                                <a style="margin-top:-42px;margin-right:50px" class="float-right" asp-action="Details" href="~/Prop/DeleteArt/@item.Id" asp-route-id="@item.Id">
+                                    <img src="~/Image/garbage.png" width="22px" height="22px" />
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>}
+        else
+        {
+            <div class="col-3  border-primary ">
+                <div class="card mb-4" style="width: 200px;">
+                    <div class="row g-0">
+
+                        <div class="col-md-6">
+                            <img src="@Url.Content(item.img_art)" width="200" height="190" />
+                        </div>
+
+                        <div class="col-md-12" style="height:60px">
+                            <div class="card-footer " style="height:60px">
+
+                                <p class="card-text" style="margin-left:-20px"><b>Prix: </b> @Html.DisplayFor(modelItem => item.offre.prix_offre)</p>
+                                <a style="margin-top:-44px;margin-right:-15px" class="float-right" asp-action="Details" href="~/Prop/detailsArt/@item.Id" asp-route-id="@item.Id">
+                                    <img src="~/Image/det.png" width="30px" height="30px" style="margin-left:-25px" />
+                                    <img src="~/Image/new-offer.png" width="70px" height="50px" style="margin-top:-385px;margin-left:-200px" />
+                                </a>
+                                <a style="margin-top:-42px;margin-right:20px" class="float-right" asp-action="Details" asp-route-id="@item.Id" href="~/Prop/EditArt/@item.Id">
+                                    <img src="~/Image/pencil.png" width="23px" height="23px" />
+                                </a>
+                                <a style="margin-top:-42px;margin-right:50px" class="float-right" asp-action="Details" href="~/Prop/DeleteArt/@item.Id" asp-route-id="@item.Id">
+                                    <img src="~/Image/garbage.png" width="22px" height="22px" />
+                                </a>
+                                <p class="" style="margin-top:-20px;font-size:12px;text-decoration:line-through;color:red"> @Html.DisplayFor(modelItem => item.prix)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>
+
+
+
+
+

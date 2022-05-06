@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ecommerceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="admin">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nom" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="prenom" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="codesecret" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="article">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nom_art" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="categorie" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="prix" Type="float" Nullable="false" />
+    <Property Name="img_art" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="marque" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="fk_prop" Type="int" />
+    <Property Name="fk_offre" Type="int" />
+  </EntityType>
+  <EntityType Name="client">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nom" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="prenom" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="age" Type="int" Nullable="false" />
+    <Property Name="email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="telephone" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="sexe" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="adresse" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="cin" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="password" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="message">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="message_client" Type="nvarchar(max)" />
+    <Property Name="fk_client" Type="int" />
+  </EntityType>
+  <EntityType Name="messageprop">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="message_prop" Type="nvarchar(max)" />
+    <Property Name="fk_propmsg" Type="int" />
+  </EntityType>
+  <EntityType Name="offre">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="description" Type="nvarchar(max)" />
+    <Property Name="date_i" Type="date" />
+    <Property Name="date_f" Type="date" />
+    <Property Name="prix_offre" Type="float" />
+  </EntityType>
+  <EntityType Name="proprietaire">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nom" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="prenom" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="age" Type="int" Nullable="false" />
+    <Property Name="email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="telephone" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="sexe" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="adresse" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="cin" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="societe" Type="nvarchar(max)" />
+    <Property Name="fonction" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="password" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="fk_client">
+    <End Role="client" Type="Self.client" Multiplicity="0..1" />
+    <End Role="message" Type="Self.message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="client">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="message">
+        <PropertyRef Name="fk_client" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_offre">
+    <End Role="offre" Type="Self.offre" Multiplicity="0..1" />
+    <End Role="article" Type="Self.article" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="offre">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="article">
+        <PropertyRef Name="fk_offre" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_prop">
+    <End Role="proprietaire" Type="Self.proprietaire" Multiplicity="0..1" />
+    <End Role="article" Type="Self.article" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="proprietaire">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="article">
+        <PropertyRef Name="fk_prop" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_propmsg">
+    <End Role="proprietaire" Type="Self.proprietaire" Multiplicity="0..1" />
+    <End Role="messageprop" Type="Self.messageprop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="proprietaire">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="messageprop">
+        <PropertyRef Name="fk_propmsg" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ecommerceModelStoreContainer">
+    <EntitySet Name="admin" EntityType="Self.admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="article" EntityType="Self.article" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="client" EntityType="Self.client" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="message" EntityType="Self.message" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="messageprop" EntityType="Self.messageprop" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="offre" EntityType="Self.offre" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="proprietaire" EntityType="Self.proprietaire" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="fk_client" Association="Self.fk_client">
+      <End Role="client" EntitySet="client" />
+      <End Role="message" EntitySet="message" />
+    </AssociationSet>
+    <AssociationSet Name="fk_offre" Association="Self.fk_offre">
+      <End Role="offre" EntitySet="offre" />
+      <End Role="article" EntitySet="article" />
+    </AssociationSet>
+    <AssociationSet Name="fk_prop" Association="Self.fk_prop">
+      <End Role="proprietaire" EntitySet="proprietaire" />
+      <End Role="article" EntitySet="article" />
+    </AssociationSet>
+    <AssociationSet Name="fk_propmsg" Association="Self.fk_propmsg">
+      <End Role="proprietaire" EntitySet="proprietaire" />
+      <End Role="messageprop" EntitySet="messageprop" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

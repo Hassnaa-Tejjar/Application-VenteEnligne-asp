@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ecommerceModelStoreContainer" CdmEntityContainer="ecommerceEntities1">
+    <EntitySetMapping Name="admin">
+      <EntityTypeMapping TypeName="ecommerceModel.admin">
+        <MappingFragment StoreEntitySet="admin">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="nom" ColumnName="nom" />
+          <ScalarProperty Name="prenom" ColumnName="prenom" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="codesecret" ColumnName="codesecret" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="article">
+      <EntityTypeMapping TypeName="ecommerceModel.article">
+        <MappingFragment StoreEntitySet="article">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="nom_art" ColumnName="nom_art" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="categorie" ColumnName="categorie" />
+          <ScalarProperty Name="prix" ColumnName="prix" />
+          <ScalarProperty Name="img_art" ColumnName="img_art" />
+          <ScalarProperty Name="marque" ColumnName="marque" />
+          <ScalarProperty Name="fk_prop" ColumnName="fk_prop" />
+          <ScalarProperty Name="fk_offre" ColumnName="fk_offre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="client">
+      <EntityTypeMapping TypeName="ecommerceModel.client">
+        <MappingFragment StoreEntitySet="client">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="nom" ColumnName="nom" />
+          <ScalarProperty Name="prenom" ColumnName="prenom" />
+          <ScalarProperty Name="age" ColumnName="age" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="telephone" ColumnName="telephone" />
+          <ScalarProperty Name="sexe" ColumnName="sexe" />
+          <ScalarProperty Name="adresse" ColumnName="adresse" />
+          <ScalarProperty Name="cin" ColumnName="cin" />
+          <ScalarProperty Name="password" ColumnName="password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="message">
+      <EntityTypeMapping TypeName="ecommerceModel.message">
+        <MappingFragment StoreEntitySet="message">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="message_client" ColumnName="message_client" />
+          <ScalarProperty Name="fk_client" ColumnName="fk_client" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="messageprop">
+      <EntityTypeMapping TypeName="ecommerceModel.messageprop">
+        <MappingFragment StoreEntitySet="messageprop">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="message_prop" ColumnName="message_prop" />
+          <ScalarProperty Name="fk_propmsg" ColumnName="fk_propmsg" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="offre">
+      <EntityTypeMapping TypeName="ecommerceModel.offre">
+        <MappingFragment StoreEntitySet="offre">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="date_i" ColumnName="date_i" />
+          <ScalarProperty Name="date_f" ColumnName="date_f" />
+          <ScalarProperty Name="prix_offre" ColumnName="prix_offre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="proprietaire">
+      <EntityTypeMapping TypeName="ecommerceModel.proprietaire">
+        <MappingFragment StoreEntitySet="proprietaire">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="nom" ColumnName="nom" />
+          <ScalarProperty Name="prenom" ColumnName="prenom" />
+          <ScalarProperty Name="age" ColumnName="age" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="telephone" ColumnName="telephone" />
+          <ScalarProperty Name="sexe" ColumnName="sexe" />
+          <ScalarProperty Name="adresse" ColumnName="adresse" />
+          <ScalarProperty Name="cin" ColumnName="cin" />
+          <ScalarProperty Name="societe" ColumnName="societe" />
+          <ScalarProperty Name="fonction" ColumnName="fonction" />
+          <ScalarProperty Name="password" ColumnName="password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
